@@ -18,6 +18,8 @@
 		1C28291D2AB6C7B7007A9A0B /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C28291C2AB6C7B7007A9A0B /* KeyboardViewController.swift */; };
 		1C28291F2AB6C8B1007A9A0B /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C28291E2AB6C8B1007A9A0B /* BoardViewController.swift */; };
 		1C5023982AB6DCA90066084A /* Keycell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5023972AB6DCA90066084A /* Keycell.swift */; };
+		1CBBEC1C2AE8B0210096F7CA /* LibreBaskerville-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1CBBEC1E2AE8B0210096F7CA /* LibreBaskerville-Bold.ttf */; };
+		1CCA53922AEB56FE007B858D /* gameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CCA53912AEB56FE007B858D /* gameData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		1C28291C2AB6C7B7007A9A0B /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		1C28291E2AB6C8B1007A9A0B /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
 		1C5023972AB6DCA90066084A /* Keycell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keycell.swift; sourceTree = "<group>"; };
+		1CBBEC1D2AE8B0210096F7CA /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = "en.lproj/LibreBaskerville-Bold.ttf"; sourceTree = "<group>"; };
+		1CCA53912AEB56FE007B858D /* gameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gameData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,7 @@
 				120E289827DAFAF4000129B5 /* SceneDelegate.swift */,
 				120E289A27DAFAF4000129B5 /* FirstViewController.swift */,
 				120E28AA27DAFE95000129B5 /* SecondViewController.swift */,
+				1CCA53912AEB56FE007B858D /* gameData.swift */,
 				1C28291C2AB6C7B7007A9A0B /* KeyboardViewController.swift */,
 				1C28291E2AB6C8B1007A9A0B /* BoardViewController.swift */,
 				1C5023972AB6DCA90066084A /* Keycell.swift */,
@@ -78,6 +83,7 @@
 				120E289F27DAFAF6000129B5 /* Assets.xcassets */,
 				120E28A127DAFAF6000129B5 /* LaunchScreen.storyboard */,
 				120E28A427DAFAF6000129B5 /* Info.plist */,
+				1CBBEC1E2AE8B0210096F7CA /* LibreBaskerville-Bold.ttf */,
 			);
 			path = StarterProjectMultipleViews;
 			sourceTree = "<group>";
@@ -141,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				120E28A327DAFAF6000129B5 /* LaunchScreen.storyboard in Resources */,
+				1CBBEC1C2AE8B0210096F7CA /* LibreBaskerville-Bold.ttf in Resources */,
 				120E28A027DAFAF6000129B5 /* Assets.xcassets in Resources */,
 				120E289E27DAFAF4000129B5 /* Main.storyboard in Resources */,
 			);
@@ -159,6 +166,7 @@
 				1C28291D2AB6C7B7007A9A0B /* KeyboardViewController.swift in Sources */,
 				120E289B27DAFAF4000129B5 /* FirstViewController.swift in Sources */,
 				121E32872817B5A200DC59D4 /* ThirdViewController.swift in Sources */,
+				1CCA53922AEB56FE007B858D /* gameData.swift in Sources */,
 				120E289727DAFAF4000129B5 /* AppDelegate.swift in Sources */,
 				120E289927DAFAF4000129B5 /* SceneDelegate.swift in Sources */,
 			);
@@ -181,6 +189,14 @@
 				120E28A227DAFAF6000129B5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		1CBBEC1E2AE8B0210096F7CA /* LibreBaskerville-Bold.ttf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1CBBEC1D2AE8B0210096F7CA /* en */,
+			);
+			name = "LibreBaskerville-Bold.ttf";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

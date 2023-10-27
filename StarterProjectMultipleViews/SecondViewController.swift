@@ -32,27 +32,49 @@ import UIKit
 //Game Board
 //Orange/Green/Grey
 
+
 class SecondViewController: UIViewController {
 
-    let answers = [
-        "later", "bloke", "there", "ultra", "words"
-    ]
+    // I created a list that contains the answers and words. I will call on this function when the code runs, picking a word out of the list to use as the answer. In the future, I will expand the list, creating different categories and using multiple lists (true or false).
+  
+    let gameAns = ["darts", "bingo", "chess", "jacks", "fives", "poker", "rugby", "rules"]
+    let movieAns = ["alien", "rocky", "avatar", "ghost", "fargo", "drive", "moana", "brave"]
+    let musicAns = ["happy", "hello", "sorry", "cream", "crazy", "alone", "enemy", "toxic"]
 
     var answer = ""
+    var randomNumber = Int.random(in: 0...7)
+    
+    
+    func assignAnswer(){
+        if gameData.gameMode == "game"{
+            answer = gameAns[randomNumber]
+        }
+        else if gameData.gameMode == "movie"{
+            answer = movieAns[randomNumber]
+        }
+        else {
+            answer = musicAns[randomNumber]
+        }
+    }
+    
     private var guesses: [[Character?]] = Array(
         repeating: Array(repeating: nil, count: 5),
         count: 6
     )
-
+    
     let keyboardVC = KeyboardViewController()
     let boardVC = BoardViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        answer = answers.randomElement() ?? "after"
         view.backgroundColor = .black
         addChildren()
-    }
+        
+        print(answer)
+        
+        }
+
+    // The addChildren() function in Swift is responsible for adding two child view controllers (keyboardVC and boardVC) to the current view controller. It configures their views, sets the delegate and data source, and adds their views as subviews to the current "Second View Controller's" view. The function also calls addConstraints() to add any required layout constraints.
 
     private func addChildren() {
         addChild(keyboardVC)
@@ -69,6 +91,8 @@ class SecondViewController: UIViewController {
 
         addConstraints()
     }
+
+    //* Using constraints (Auto Layout) allows me to create views that can adjust to different size classes, positions, angles, and more. Without having to manually update frames or positions, constraints ensure that the views adapt to any size changes. The KeyboardViewControllerDelegate extension handles the input of keyboard letters. It updates the current guess grid with the tapped letter.
 
     func addConstraints() {
         NSLayoutConstraint.activate([
@@ -109,6 +133,7 @@ extension SecondViewController: KeyboardViewControllerDelegate {
     }
 }
 
+//* The BoardViewControllerDataSource extension provides data and formatting layout for the guess-grid view. It gives back a list of guess arrays, which determines whether a row of guesses is full, and assigns colours (grey, orange, and green) to cells based on letters in the answer.
 extension SecondViewController: BoardViewControllerDatasource {
     var currentGuesses: [[Character?]] {
         return guesses
@@ -133,7 +158,6 @@ extension SecondViewController: BoardViewControllerDatasource {
             return .systemGreen
         }
         
-        print(answer)
 
         return .systemOrange
         

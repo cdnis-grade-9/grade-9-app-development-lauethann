@@ -39,6 +39,16 @@ class FirstViewController: UIViewController {
     
     // MARK: - IBActions and Functions
     
+    @IBAction func gameButton(_ sender: Any) {
+        gameData.gameMode = "game"
+    }
+    @IBAction func movieButton(_ sender: Any) {
+        gameData.gameMode = "movie"
+    }
+    @IBAction func musicButton(_ sender: Any) {
+        gameData.gameMode = "music"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
