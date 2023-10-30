@@ -20,6 +20,7 @@ class KeyboardViewController: UIViewController, UICollectionViewDelegateFlowLayo
 
     let letters = ["qwertyuiop", "asdfghjkl", "zxcvbnm"]
     private var keys: [[Character]] = []
+    
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()

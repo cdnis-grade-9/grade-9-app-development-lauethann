@@ -36,7 +36,8 @@ import UIKit
 class SecondViewController: UIViewController {
 
     // I created a list that contains the answers and words. I will call on this function when the code runs, picking a word out of the list to use as the answer. In the future, I will expand the list, creating different categories and using multiple lists (true or false).
-  
+    @IBOutlet weak var answerLabel: UILabel!
+    
     let gameAns = ["darts", "bingo", "chess", "jacks", "fives", "poker", "rugby", "rules"]
     let movieAns = ["alien", "rocky", "avatar", "ghost", "fargo", "drive", "moana", "brave"]
     let musicAns = ["happy", "hello", "sorry", "cream", "crazy", "alone", "enemy", "toxic"]
@@ -48,12 +49,15 @@ class SecondViewController: UIViewController {
     func assignAnswer(){
         if gameData.gameMode == "game"{
             answer = gameAns[randomNumber]
+            answerLabel.text = String(answer)
         }
         else if gameData.gameMode == "movie"{
             answer = movieAns[randomNumber]
+            answerLabel.text = String(answer)
         }
         else {
             answer = musicAns[randomNumber]
+            answerLabel.text = String(answer)
         }
     }
     
@@ -66,6 +70,10 @@ class SecondViewController: UIViewController {
     let boardVC = BoardViewController()
 
     override func viewDidLoad() {
+        assignAnswer()
+        answerLabel.text = answer
+        print(answer)
+        
         super.viewDidLoad()
         view.backgroundColor = .black
         addChildren()
