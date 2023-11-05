@@ -36,7 +36,6 @@ import UIKit
 class SecondViewController: UIViewController {
 
     // I created a list that contains the answers and words. I will call on this function when the code runs, picking a word out of the list to use as the answer. In the future, I will expand the list, creating different categories and using multiple lists (true or false).
-    @IBOutlet weak var answerLabel: UILabel!
     
     let gameAns = ["darts", "bingo", "chess", "jacks", "fives", "poker", "rugby", "rules"]
     let movieAns = ["alien", "rocky", "avatar", "ghost", "fargo", "drive", "moana", "brave"]
@@ -44,20 +43,24 @@ class SecondViewController: UIViewController {
 
     var answer = ""
     var randomNumber = Int.random(in: 0...7)
+    var rightCount:Int = 0
     
+    func submitButtonClickHandle() {
+        
+    }
     
     func assignAnswer(){
         if gameData.gameMode == "game"{
             answer = gameAns[randomNumber]
-            answerLabel.text = String(answer)
+            //answerLabel.text = String(answer)
         }
         else if gameData.gameMode == "movie"{
             answer = movieAns[randomNumber]
-            answerLabel.text = String(answer)
+            //answerLabel.text = String(answer)
         }
         else {
             answer = musicAns[randomNumber]
-            answerLabel.text = String(answer)
+            //answerLabel.text = String(answer)
         }
     }
     
@@ -68,17 +71,17 @@ class SecondViewController: UIViewController {
     
     let keyboardVC = KeyboardViewController()
     let boardVC = BoardViewController()
+    var enterDate = Date()
 
     override func viewDidLoad() {
         assignAnswer()
-        answerLabel.text = answer
         print(answer)
         
         super.viewDidLoad()
         view.backgroundColor = .black
         addChildren()
-        
         print(answer)
+        self.enterDate = Date()
         
         }
 
@@ -122,7 +125,6 @@ extension SecondViewController: KeyboardViewControllerDelegate {
 
         // Update guesses
         var stop = false
-
         for i in 0..<guesses.count {
             for j in 0..<guesses[i].count {
                 if guesses[i][j] == nil {
@@ -136,7 +138,47 @@ extension SecondViewController: KeyboardViewControllerDelegate {
                 break
             }
         }
+        boardVC.reloadData()
+        
+        ///The given code is a part of a larger implementation related to a game's completion and the creation of a pop-up view. It initializes a boolean variable called "stop" as false and iterates over a two-dimensional array called "guesses." If a specific element in the "guesses" array is nil, it assigns a value to that element, sets "stop" to true, and breaks out of the loop. It then reloads the data of a view controller called "boardVC." If the element at the last index of the "guesses" array is not nil, it creates and presents a pop-up view using a UIAlertController. The code also defines a function called "deleteIndexBoardViewController()" that updates the "guesses" array by removing elements. If the element at the last index of the "guesses" array is not nil, it sets that element to nil and reloads the "boardVC" to reflect the change. If the element at the last index is nil, it removes the first nil element in the "guesses" array by setting it to nil. Finally, the "boardVC" is reloaded once again.
+        if (guesses[guesses.count-1][guesses[guesses.count-1].count-1] != nil) {
+            
+            let tempDate = Date().timeIntervalSince1970 - self.enterDate.timeIntervalSince1970
+            let temp:Int = Int(tempDate)
+            let alertController = UIAlertController(title: "Lose", message: "TIME:\(temp)  COUNT: \(guesses.count)  ANSWER: \(answer)", preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                
+            }
+            alertController.addAction(action)
+            present(alertController, animated: true, completion: nil)
+        }
+    }
+    
+    func deleteIndexBoardViewController() {
+        // Update guesses
+        if (guesses[guesses.count-1][guesses[guesses.count-1].count-1] != nil) {
+            guesses[guesses.count-1][guesses[guesses.count-1].count-1] = nil
+            boardVC.reloadData()
+            return;
+        }
+        var stop = false
+        for i in 0..<guesses.count {
+            for j in 0..<guesses[i].count {
+                if guesses[i][j] == nil {
+                    if (j == 0) {
+                        guesses[i-1][guesses[i].count - 1] = nil
+                    } else {
+                        guesses[i][j-1] = nil
+                    }
+                    stop = true
+                    break
+                }
+            }
 
+            if stop {
+                break
+            }
+        }
         boardVC.reloadData()
     }
 }
@@ -162,11 +204,23 @@ extension SecondViewController: BoardViewControllerDatasource {
             return nil
         }
 
+        ///The same code line 144-184, but for when the user wins/gets the answer before the 6 trials
         if indexedAnswer[indexPath.row] == letter {
+            self.rightCount += 1
+            if (self.rightCount == 5) {
+                let tempDate = Date().timeIntervalSince1970 - self.enterDate.timeIntervalSince1970
+                let temp:Int = Int(tempDate)
+                let alertController = UIAlertController(title: "Victory", message: "TIME:\(temp)  COUNT: \(indexPath.section + 1)  ANSWER: \(answer)", preferredStyle: .alert)
+                let action = UIAlertAction(title: "OK", style: .default) { (action) in
+                    
+                }
+                alertController.addAction(action)
+                present(alertController, animated: true, completion: nil)
+            }
             return .systemGreen
         }
         
-
+        self.rightCount = 0
         return .systemOrange
         
     }

@@ -5,15 +5,22 @@
 //  Created by Ethan Lau on 17/9/2023.
 //
 
+//The KeyCell code defines a custom UICollectionViewCell class called KeyCell, which is used to display keyboard keys in a collection view.
+//Encapsulates the user interface and logic for displaying a single-letter cell.
+//Reuse: The cells can be populated by calling the configure method with letter data.
+//By creating a subclass, it separates the cell presentation from the view controller code. After that, call the configure function with letter data to populate the cells.
+//KeyCell defines a static identifier property, initialises a UILabel property, and overrides init(frame:) to set up the cell. Adds the label as a subview and adds auto-layout constraints for formatting.
+//Overrides prepareForReuse() to reset the label text when the cell is reused. This allows cells to be used efficiently within a UICollectionView to display the keys of an onscreen keyboard interface multiple times.
+
 import UIKit
 
 class KeyCell: UICollectionViewCell {
     static let identifier = "Keycell"
 
-    let label: UILabel = {
+    public let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .white
+        label.textColor = .black
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
